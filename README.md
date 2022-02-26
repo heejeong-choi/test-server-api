@@ -11,6 +11,11 @@
 
 ### DB 설계(ERD)
 
+### Use cases
+- A host can only have one private ground at the page
+- Host can register their private ground
+- Host should pick more than 3 types of location themes
+
 ### 핵심 기능
 - private ground 등록하기
 - private ground 단건조회 / 여러건 조회
