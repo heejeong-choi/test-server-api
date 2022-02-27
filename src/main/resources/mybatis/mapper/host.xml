@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.testserverapi.mapper.HostMapper">
+
     <insert id="save" parameterType="com.example.testserverapi.model.vo.Host">
         INSERT INTO host
         (
@@ -12,4 +15,14 @@
         #{name}, #{email}, #{image_url}, NOW(), #{name} ,false
         )
     </insert>
+
+    <select id="get" parameterType="Long" resultType="com.example.testserverapi.model.dto.HostResDto">
+        SELECT
+            host_id, name, email, image_url, created_at
+        FROM
+            host
+        WHERE
+            host_id = #{hostId}
+    </select>
+
 </mapper>

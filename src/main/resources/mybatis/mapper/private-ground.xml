@@ -3,4 +3,26 @@
 
 <mapper namespace="com.example.testserverapi.mapper.PrivateGroundMapper">
 
+    <insert id="save" parameterType="com.example.testserverapi.model.dto.PrivateGroundReqDto">
+        INSERT INTO private_ground
+            (
+             title,
+             description,
+             type,
+             unit_amount,
+             access_vehicle,
+             space_size,
+             theme,
+             created_at,
+             created_by,
+             deleted
+             )
+         VALUES
+            (
+             #{title},
+             #{description},
+             #{privateGroundType.code},
+
+            )
+    </insert>
 </mapper>
