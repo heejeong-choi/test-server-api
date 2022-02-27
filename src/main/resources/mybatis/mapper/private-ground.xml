@@ -6,6 +6,7 @@
     <insert id="save" parameterType="com.example.testserverapi.model.dto.PrivateGroundReqDto">
         INSERT INTO private_ground
             (
+             host_id,
              title,
              description,
              type,
@@ -21,7 +22,6 @@
             (
              #{title},
              #{description},
-             #{privateGroundType.code},
 
             )
     </insert>

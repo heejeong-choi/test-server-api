@@ -3,10 +3,12 @@ package com.example.testserverapi.model.vo;
 import com.example.testserverapi.common.codes.LocationTheme;
 import com.example.testserverapi.common.codes.PrivateGroundType;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 
 @Data
+@Accessors(chain = true)
 public class PrivateGround {
     private Long pgId;
     private Long hostId;

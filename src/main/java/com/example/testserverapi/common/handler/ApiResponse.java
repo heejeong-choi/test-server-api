@@ -1,4 +1,4 @@
-package com.example.testserverapi.common;
+package com.example.testserverapi.common.handler;
 
 import com.example.testserverapi.common.codes.ErrorCodes;
 import lombok.AccessLevel;

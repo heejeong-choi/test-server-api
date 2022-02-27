@@ -1,0 +1,10 @@
+POST http://localhost:8112/api/v1/host/register
+Content-Type: application/json
+
+{
+  "name" : "Cap boi",
+  "email" : "this-is-not-cap@gmail.com",
+  "imageUrl" : "https://upload.wikimedia.org/wikipedia/ko/4/4a/%EC%8B%A0%EC%A7%B1%EA%B5%AC.png"
+}
+
+###

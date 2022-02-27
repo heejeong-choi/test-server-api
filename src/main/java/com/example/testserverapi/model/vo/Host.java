@@ -1,10 +1,12 @@
 package com.example.testserverapi.model.vo;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 
 @Data
+@Accessors(chain = true)
 public class Host {
     private Long hostId;
     private String name;

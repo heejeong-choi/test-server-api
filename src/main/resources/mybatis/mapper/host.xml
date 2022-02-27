@@ -12,7 +12,7 @@
         )
         VALUES
         (
-        #{name}, #{email}, #{image_url}, NOW(), #{name} ,false
+        #{name}, #{email}, #{imageUrl}, NOW(), #{name} ,false
         )
     </insert>
 
