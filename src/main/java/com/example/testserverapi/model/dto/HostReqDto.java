@@ -1,4 +1,4 @@
-package com.example.testserverapi.model;
+package com.example.testserverapi.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

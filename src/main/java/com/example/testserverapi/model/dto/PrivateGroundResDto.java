@@ -1,4 +1,4 @@
-package com.example.testserverapi.model;
+package com.example.testserverapi.model.dto;
 
 import com.example.testserverapi.common.codes.LocationTheme;
 import com.example.testserverapi.common.codes.PrivateGroundType;

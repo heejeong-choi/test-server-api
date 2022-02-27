@@ -6,4 +6,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class HostService {
+
+    //호스트 등록
+
 }
