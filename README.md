@@ -10,6 +10,8 @@
 - MySQL
 
 ### DB 설계(ERD)
+![image](https://user-images.githubusercontent.com/80879782/155894084-bf8b1e5b-2688-4f16-bd84-bc4d334cab93.png)
+
 
 ### Use cases
 - A host can only have one private ground at the page
