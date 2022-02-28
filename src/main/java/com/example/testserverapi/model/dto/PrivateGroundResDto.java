@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class PrivateGroundResDto {
 
-    private Long pgId;
-    private Long hostId;
+    private long pgId;
+    private long hostId;
     private String title;
     private String description;
     private PrivateGroundType type;

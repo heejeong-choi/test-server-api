@@ -6,7 +6,7 @@ import com.example.testserverapi.model.dto.PrivateGroundReqDto;
 import com.example.testserverapi.model.dto.PrivateGroundResDto;
 import com.example.testserverapi.model.vo.Host;
 import com.example.testserverapi.model.vo.PrivateGround;
-import com.example.testserverapi.repository.PrivateGroundRepository;
+import com.example.testserverapi.mapper.PrivateGroundMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,13 +14,12 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class PrivateGroundService {
 
-    private final PrivateGroundRepository privateGroundRepository;
+    private final PrivateGroundMapper privateGroundMapper;
     private final HostService hostService;
 
     public PrivateGroundResDto register(PrivateGroundReqDto.Registry form) {
@@ -28,6 +27,7 @@ public class PrivateGroundService {
 
         PrivateGround privateGround = new PrivateGround()
                 .setTitle(form.getTitle())
+                .setHostId(host.getHostId())
                 .setDescription(form.getDescription())
                 .setType(form.getType().stream().map(PrivateGroundType::getCode).collect(Collectors.joining(",")))
                 .setUnitAmount(form.getUnitAmount())
@@ -37,13 +37,12 @@ public class PrivateGroundService {
                 .setCreatedAt(LocalDateTime.now())
                 .setDeleted(false);
 
-        privateGroundRepository.save(privateGround);
+        privateGroundMapper.save(privateGround);
 
         return toDto(privateGround);
     }
 
     public PrivateGroundResDto toDto(PrivateGround privateGround) {
-        PrivateGroundResDto privateGroundResDto = new PrivateGroundResDto();
         return new PrivateGroundResDto()
                 .setPgId(privateGround.getPgId())
                 .setTitle(privateGround.getTitle())

@@ -16,7 +16,7 @@ public class PrivateGroundReqDto {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class Registry {
-        private Long pgId;
+        private long pgId;
         private long hostId;
         private String title;
         private String description;

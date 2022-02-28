@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 public class HostResDto {
 
-    private Long hostId;
+    private long hostId;
     private String name;
     private String email;
     private String imageUrl;

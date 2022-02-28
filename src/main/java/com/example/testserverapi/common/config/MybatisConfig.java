@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @RequiredArgsConstructor
-@MapperScan(basePackages = "com.example.testserverapi.mapper")
+@MapperScan(basePackages = "com.example.testserverapi.repository")
 public class MybatisConfig {
 
     @Bean

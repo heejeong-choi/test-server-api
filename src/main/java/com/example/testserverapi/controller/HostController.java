@@ -16,8 +16,13 @@ public class HostController {
 
     private final HostService hostService;
 
+    @GetMapping
+    public String HealthCheck() {
+        return "I'm ok, Good ! ! !";
+    }
+
     //호스트 등록하기 API
-    @PostMapping(value = "/register", produces = "application/json; charset=UTF-8")
+    @PostMapping(value = "/register")
     public ApiResponse<HostResDto> register(@RequestBody HostReqDto.Registry request) {
         log.info("호스트 등록 REQ :: {}", request.toString());
 
@@ -27,16 +32,5 @@ public class HostController {
 
         return ApiResponse.success(response);
     }
-
-//    @GetMapping(value = "/search/{id}", produces = "application/json; charset=UTF-8")
-//    public ApiResponse<HostResDto> search(@PathVariable("id") long hostId) {
-//        log.info("호스트 조회 ID :: {}", hostId);
-//
-//        HostResDto response = hostService.getById(hostId);
-//
-//        log.info("호스트 조회 RES :: {}", response.toString());
-//
-//        return ApiResponse.success(response);
-//    }
 
 }

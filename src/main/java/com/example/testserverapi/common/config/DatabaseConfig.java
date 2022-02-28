@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 public class DatabaseConfig {
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.datasource.hikari")
+    @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource dataSource() {
         return DataSourceBuilder.create().build();
     }

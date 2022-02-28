@@ -1,8 +1,6 @@
 package com.example.testserverapi.service;
 
-import com.example.testserverapi.common.codes.ErrorCodes;
-import com.example.testserverapi.common.handler.ApiException;
-import com.example.testserverapi.repository.HostRepository;
+import com.example.testserverapi.mapper.HostMapper;
 import com.example.testserverapi.model.dto.HostReqDto;
 import com.example.testserverapi.model.dto.HostResDto;
 import com.example.testserverapi.model.vo.Host;
@@ -17,12 +15,11 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class HostService {
 
-    private final HostRepository hostRepository;
+    private final HostMapper hostMapper;
 
     //호스트조회
     public Host getById(long hostId) {
-        return hostRepository.findById(hostId)
-                .orElseThrow(() -> new ApiException("존재하지 않는 호스트입니다.", ErrorCodes.NOT_FOUND_USER));
+        return hostMapper.findById(hostId);
     }
 
     //호스트 등록
@@ -35,7 +32,7 @@ public class HostService {
                 .setCreatedBy(request.getName())
                 .setDeleted(false);
 
-        hostRepository.save(host);
+        hostMapper.save(host);
 
         return toDto(host);
     }

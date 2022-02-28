@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Data
 @Accessors(chain = true)
 public class Host {
-    private Long hostId;
+    private long hostId;
     private String name;
     private String email;
     private String imageUrl;
