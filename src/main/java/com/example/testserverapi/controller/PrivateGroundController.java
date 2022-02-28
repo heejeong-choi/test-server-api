@@ -23,6 +23,10 @@ public class PrivateGroundController {
     public ApiResponse<PrivateGroundResDto> register(@RequestBody PrivateGroundReqDto.Registry request) {
         log.info("Private ground 등록 REQ :: {}", request.toString());
 
-        PrivateGroundResDto response = privateGroundService.
+        PrivateGroundResDto response = privateGroundService.register(request);
+
+        log.info("Private ground 등록 RES :: {}", response.toString());
+
+        return ApiResponse.success(response);
     }
 }

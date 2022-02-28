@@ -4,47 +4,13 @@
 <mapper namespace="com.example.testserverapi.repository.PrivateGroundRepository">
 
     <insert id="save" parameterType="com.example.testserverapi.model.vo.PrivateGround">
-        INSERT INTO private_ground
-            (
-             host_id,
-             title,
-             description,
-             type,
-             unit_amount,
-             access_vehicle,
-             space_size,
-             theme,
-             created_at,
-             created_by,
-             deleted
-             )
-         VALUES
-            (
-             #{hostId},
-             #{title},
-             #{description},
-             #{type},
-             #{unitAmount},
-             #{accessVehicle},
-             #{spaceSize},
-             #{theme},
-             now(),
-             #{createdBy},
-             #{deleted}
-            )
+        INSERT INTO private_ground ( host_id, title, description, type, unit_amount, access_vehicle,
+                                    space_size, theme, created_at, created_by, deleted )
+         VALUES ( #{hostId}, #{title}, #{description}, #{type}, #{unitAmount}, #{accessVehicle},
+             #{spaceSize}, #{theme}, now(), #{createdBy}, #{deleted} )
     </insert>
 
-    <select id="getById" parameterType="Long" resultType="com.example.testserverapi.model.vo.PrivateGround">
-        SELECT
-            BOARD_SEQUENCE
-             ,BOARD_TYPE
-             ,TITLE
-             ,CONTENTS
-             ,CREATED_AT
-             ,UPDATED_AT
-        FROM
-            BOARD
-        WHERE
-            BOARD_SEQUENCE = #{boardSequence}
+    <select id="findById" parameterType="long" resultType="com.example.testserverapi.model.vo.PrivateGround">
+        SELECT * FROM private_ground WHERE host_id = #{hostId}
     </select>
 </mapper>

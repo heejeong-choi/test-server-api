@@ -14,23 +14,22 @@
     </resultMap>
 
     <insert id="save" parameterType="com.example.testserverapi.model.vo.Host">
-        INSERT INTO host
-        (
-         name, email, image_url, created_at, created_by, deleted
-        )
-        VALUES
-        (
-        #{name}, #{email}, #{imageUrl}, NOW(), #{name} ,false
-        )
+        INSERT INTO host (name, email, image_url, created_at, created_by, deleted)
+        VALUES (#{name}, #{email}, #{imageUrl}, NOW(), #{name}, false)
     </insert>
 
-    <select id="get" parameterType="Long" resultType="com.example.testserverapi.model.dto.HostResDto">
-        SELECT
-            host_id, name, email, image_url, created_at
-        FROM
-            host
-        WHERE
-            host_id = #{hostId}
+    <select id="findById" parameterType="long" resultType="com.example.testserverapi.model.vo.Host">
+        SELECT * FROM host WHERE host_id = #{hostId}
     </select>
+
+    <delete id="deleteById" parameterType="long">
+        DELETE FROM host WHERE host_id = #{hostId}
+    </delete>
+
+    <update id="update" parameterType="com.example.testserverapi.model.vo.Host">
+        UPDATE host SET image_url = #{imageUrl}, modified_at = now(), modified_by = name WHERE host_id = #{hostId}
+    </update>
+
+
 
 </mapper>

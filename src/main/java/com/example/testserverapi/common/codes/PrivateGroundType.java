@@ -22,13 +22,13 @@ public enum PrivateGroundType {
     REST_STOP ("REST_STOP","휴게소", true);
 
     @Getter
-    private String code;
+    private final String code;
 
     @Getter
-    private String desc;
+    private final String desc;
 
     @Getter
-    private boolean active;
+    private final boolean active;
 
     public static List<PrivateGroundType> privateGroundTypeList() {
         return Arrays.stream(PrivateGroundType.values())

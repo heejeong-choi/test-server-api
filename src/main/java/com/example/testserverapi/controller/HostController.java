@@ -28,15 +28,15 @@ public class HostController {
         return ApiResponse.success(response);
     }
 
-    @GetMapping(value = "/search/{id}", produces = "application/json; charset=UTF-8")
-    public ApiResponse<HostResDto> search(@PathVariable("id") Long id) {
-        log.info("호스트 조회 ID :: {}", id);
-
-        HostResDto response = hostService.search(id);
-
-        log.info("호스트 조회 RES :: {}", response.toString());
-
-        return ApiResponse.success(response);
-    }
+//    @GetMapping(value = "/search/{id}", produces = "application/json; charset=UTF-8")
+//    public ApiResponse<HostResDto> search(@PathVariable("id") long hostId) {
+//        log.info("호스트 조회 ID :: {}", hostId);
+//
+//        HostResDto response = hostService.getById(hostId);
+//
+//        log.info("호스트 조회 RES :: {}", response.toString());
+//
+//        return ApiResponse.success(response);
+//    }
 
 }
