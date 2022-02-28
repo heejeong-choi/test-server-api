@@ -6,10 +6,7 @@ import com.example.testserverapi.model.dto.HostResDto;
 import com.example.testserverapi.service.HostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -27,6 +24,17 @@ public class HostController {
         HostResDto response = hostService.register(request);
 
         log.info("호스트 등록 RES :: {}", response.toString());
+
+        return ApiResponse.success(response);
+    }
+
+    @GetMapping(value = "/search/{id}", produces = "application/json; charset=UTF-8")
+    public ApiResponse<HostResDto> search(@PathVariable("id") Long id) {
+        log.info("호스트 조회 ID :: {}", id);
+
+        HostResDto response = hostService.search(id);
+
+        log.info("호스트 조회 RES :: {}", response.toString());
 
         return ApiResponse.success(response);
     }

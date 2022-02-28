@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.testserverapi.mapper.PrivateGroundMapper">
+<mapper namespace="com.example.testserverapi.repository.PrivateGroundRepository">
 
-    <insert id="save" parameterType="com.example.testserverapi.model.dto.PrivateGroundReqDto">
+    <insert id="save" parameterType="com.example.testserverapi.model.vo.PrivateGround">
         INSERT INTO private_ground
             (
              host_id,
@@ -20,9 +20,31 @@
              )
          VALUES
             (
+             #{hostId},
              #{title},
              #{description},
-
+             #{type},
+             #{unitAmount},
+             #{accessVehicle},
+             #{spaceSize},
+             #{theme},
+             now(),
+             #{createdBy},
+             #{deleted}
             )
     </insert>
+
+    <select id="getById" parameterType="Long" resultType="com.example.testserverapi.model.vo.PrivateGround">
+        SELECT
+            BOARD_SEQUENCE
+             ,BOARD_TYPE
+             ,TITLE
+             ,CONTENTS
+             ,CREATED_AT
+             ,UPDATED_AT
+        FROM
+            BOARD
+        WHERE
+            BOARD_SEQUENCE = #{boardSequence}
+    </select>
 </mapper>

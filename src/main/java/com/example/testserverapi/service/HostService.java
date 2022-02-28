@@ -1,6 +1,6 @@
 package com.example.testserverapi.service;
 
-import com.example.testserverapi.mapper.HostMapper;
+import com.example.testserverapi.repository.HostRepository;
 import com.example.testserverapi.model.dto.HostReqDto;
 import com.example.testserverapi.model.dto.HostResDto;
 import com.example.testserverapi.model.vo.Host;
@@ -15,12 +15,12 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class HostService {
 
-    private final HostMapper hostMapper;
+    private final HostRepository hostMapper;
 
     //호스트 등록
     public HostResDto register(HostReqDto.Registry request) {
-        Host host = new Host();
-        host.setName(request.getName())
+        Host host = new Host()
+                .setName(request.getName())
                 .setEmail(request.getEmail())
                 .setImageUrl(request.getImageUrl())
                 .setCreatedAt(LocalDateTime.now())

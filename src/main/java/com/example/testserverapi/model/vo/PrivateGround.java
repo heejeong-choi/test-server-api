@@ -11,14 +11,14 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 public class PrivateGround {
     private Long pgId;
-    private Long hostId;
+    private Host host;
     private String title;
     private String description;
-    private PrivateGroundType type;
+    private String type;
     private int unitAmount;
     private int accessVehicle;
     private float spaceSize;
-    private LocationTheme theme;
+    private String theme;
     private LocalDateTime createdAt;
     private String createdBy;
     private LocalDateTime modifiedAt;

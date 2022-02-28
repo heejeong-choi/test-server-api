@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 public class PrivateGroundReqDto {
 
@@ -19,10 +19,11 @@ public class PrivateGroundReqDto {
         private Long pgId;
         private String title;
         private String description;
-        private PrivateGroundType type;
+        private List<PrivateGroundType> type;
         private int unitAmount;
         private int accessVehicle;
         private float spaceSize;
-        private LocationTheme theme;
+        private List<LocationTheme> theme;
     }
+
 }
