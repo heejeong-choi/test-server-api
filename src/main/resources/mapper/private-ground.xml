@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mustoutdoor.testserverapi.mapper.PrivateGroundMapper">
+
+<!--    <resultMap id="PrivateGround" type="com.mustoutdoor.testserverapi.model.vo.PrivateGround">-->
+<!--        <result column="pg_id" property="pgId" />-->
+<!--        <result column="host_id" property="hostId" />-->
+<!--        <result column="title" property="title" />-->
+<!--        <result column="description" property="description" />-->
+<!--        <result column="type" property="type" />-->
+<!--        <result column="unit_amount" property="unitAmount" />-->
+<!--        <result column="access_vehicle" property="accessVehicle" />-->
+<!--        <result column="space_size" property="spaceSize" />-->
+<!--        <result column="theme" property="theme" />-->
+<!--        <result column="created_at" property="createdAt" />-->
+<!--        <result column="created_by" property="createdBy" />-->
+<!--        <result column="modified_at" property="modifiedAt" />-->
+<!--        <result column="modified_by" property="modifiedBy" />-->
+<!--        <result column="deleted" property="deleted" />-->
+<!--    </resultMap>-->
+
+    <insert id="save" parameterType="com.mustoutdoor.testserverapi.model.vo.PrivateGround">
+        INSERT INTO private_ground ( host_id, title, description, type, unit_amount, access_vehicle,
+                                    space_size, theme, created_at, created_by, deleted )
+         VALUES ( #{hostId}, #{title}, #{description}, #{type}, #{unitAmount}, #{accessVehicle},
+             #{spaceSize}, #{theme}, now(), #{createdBy}, #{deleted} )
+    </insert>
+
+    <select id="findById" parameterType="long" resultType="com.mustoutdoor.testserverapi.model.vo.PrivateGround">
+        SELECT * FROM private_ground WHERE host_id = #{hostId}
+    </select>
+
+</mapper>
