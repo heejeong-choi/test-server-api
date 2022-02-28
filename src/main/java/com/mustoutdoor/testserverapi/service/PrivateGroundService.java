@@ -1,7 +1,10 @@
 package com.mustoutdoor.testserverapi.service;
 
+import com.mustoutdoor.testserverapi.common.codes.ErrorCodes;
+import com.mustoutdoor.testserverapi.common.codes.GroundStatus;
 import com.mustoutdoor.testserverapi.common.codes.LocationTheme;
 import com.mustoutdoor.testserverapi.common.codes.PrivateGroundType;
+import com.mustoutdoor.testserverapi.common.handler.ApiException;
 import com.mustoutdoor.testserverapi.model.dto.PrivateGroundReqDto;
 import com.mustoutdoor.testserverapi.model.dto.PrivateGroundResDto;
 import com.mustoutdoor.testserverapi.model.vo.Host;
@@ -25,20 +28,33 @@ public class PrivateGroundService {
     public PrivateGroundResDto register(PrivateGroundReqDto.Registry form) {
         Host host = hostService.getById(form.getHostId());
 
+        PrivateGround existGround = privateGroundMapper.findById(host.getHostId());
+
+        if(existGround != null) {
+            throw new ApiException("해당 호스트는 이미 private ground를 보유하고 있습니다.",
+                    ErrorCodes.CONFLICT_EXCEPTION);
+        }
+
+        //type은 1개만, theme은 3개까지만
         PrivateGround privateGround = new PrivateGround()
+                .setStatus(GroundStatus.UNDER_INSPECTION)
                 .setTitle(form.getTitle())
                 .setHostId(host.getHostId())
                 .setDescription(form.getDescription())
-                .setType(form.getType().stream().map(PrivateGroundType::getCode).collect(Collectors.joining(",")))
+                .setType(String.valueOf(form.getType()))
                 .setUnitAmount(form.getUnitAmount())
                 .setAccessVehicle(form.getAccessVehicle())
                 .setSpaceSize(form.getSpaceSize())
                 .setTheme(form.getTheme().stream().map(LocationTheme::getCode).collect(Collectors.joining(",")))
                 .setCreatedAt(LocalDateTime.now())
+                .setCreatedBy(host.getName())
                 .setDeleted(false);
 
-        privateGroundMapper.save(privateGround);
+        if(form.getTheme().size() > 3) {
+            throw new ApiException("Location Theme은 3개까지만 등록이 가능합니다.", ErrorCodes.ONLY_FOR_3_KIND_OF_THEME);
+        }
 
+        privateGroundMapper.save(privateGround);
         return toDto(privateGround);
     }
 

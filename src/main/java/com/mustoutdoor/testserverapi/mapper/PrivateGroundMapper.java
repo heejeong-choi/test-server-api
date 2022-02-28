@@ -7,5 +7,5 @@ public interface PrivateGroundMapper {
 
     void save(PrivateGround privateGround);
 
-//    PrivateGround findById(long hostId);
+    PrivateGround findById(long hostId);
 }

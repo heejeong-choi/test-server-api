@@ -29,7 +29,7 @@ public enum LocationTheme {
     PET_ALLOWED ("PET_ALLOWED", "애완동물 동반가능", true);
 
     @Getter
-    private String code;
+    private final String code;
 
     @Getter
     private String desc;

@@ -12,6 +12,7 @@ public enum ErrorCodes {
 
     // 400 Bad Request
     VALIDATION_EXCEPTION(BAD_REQUEST, "VA01", "잘못된 요청입니다."),
+    ONLY_FOR_3_KIND_OF_THEME(BAD_REQUEST, "VA02", "위치 테마는 3개까지만 선택이 가능합니다."),
 
     // 403 Forbidden
     FORBIDDEN_EXCEPTION(FORBIDDEN, "FB01", "허용되지 않는 요청입니다."),

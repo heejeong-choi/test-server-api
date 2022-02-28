@@ -1,5 +1,6 @@
 package com.mustoutdoor.testserverapi.model.dto;
 
+import com.mustoutdoor.testserverapi.common.codes.AccessVehicle;
 import com.mustoutdoor.testserverapi.common.codes.LocationTheme;
 import com.mustoutdoor.testserverapi.common.codes.PrivateGroundType;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ public class PrivateGroundResDto {
     private String description;
     private PrivateGroundType type;
     private int unitAmount;
-    private int accessVehicle;
+    private AccessVehicle accessVehicle;
     private float spaceSize;
     private LocationTheme theme;
     private LocalDateTime createdAt;

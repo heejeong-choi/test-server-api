@@ -12,9 +12,10 @@ public class HostReqDto {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Registry {
+
         String name;
         String email;
         String imageUrl;
-    }
 
+    }
 }

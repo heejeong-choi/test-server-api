@@ -30,7 +30,7 @@
     </insert>
 
     <select id="findById" parameterType="long" resultType="com.mustoutdoor.testserverapi.model.vo.PrivateGround">
-        SELECT * FROM private_ground WHERE host_id = #{hostId}
+        SELECT * FROM private_ground WHERE host_id = #{hostId} AND deleted = false
     </select>
 
 </mapper>

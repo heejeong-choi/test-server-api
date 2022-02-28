@@ -3,12 +3,9 @@ package com.mustoutdoor.testserverapi.common.codes;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @AllArgsConstructor
 public enum PrivateGroundType {
+
     PARK ("PARK", "공원", true),
     FARMLAND ("FARMLAND", "넓은 농경지", true),
     FARM ("FARM", "농장", true),
@@ -25,15 +22,9 @@ public enum PrivateGroundType {
     private final String code;
 
     @Getter
-    private final String desc;
+    private String desc;
 
     @Getter
-    private final boolean active;
-
-    public static List<PrivateGroundType> privateGroundTypeList() {
-        return Arrays.stream(PrivateGroundType.values())
-                .filter(PrivateGroundType::isActive)
-                .collect(Collectors.toList());
-    }
+    private boolean active;
 
 }
