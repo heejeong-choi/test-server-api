@@ -7,10 +7,7 @@ import com.mustoutdoor.testserverapi.service.PrivateGroundService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -27,6 +24,17 @@ public class PrivateGroundController {
         PrivateGroundResDto response = privateGroundService.register(request);
 
         log.info("Private ground 등록 RES :: {}", response.toString());
+
+        return ApiResponse.success(response);
+    }
+
+    @GetMapping(value = "/search/{pg_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ApiResponse<PrivateGroundResDto> search(@PathVariable("pg_id") long pgId) {
+        log.info("Private ground 조회 REQ - private ground ID :: {}", pgId);
+
+        PrivateGroundResDto response = privateGroundService.findByPgId(pgId);
+
+        log.info("Private ground 조회 RES :: {}", response.toString());
 
         return ApiResponse.success(response);
     }

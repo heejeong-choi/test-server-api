@@ -23,14 +23,18 @@
 <!--    </resultMap>-->
 
     <insert id="save" parameterType="com.mustoutdoor.testserverapi.model.vo.PrivateGround">
-        INSERT INTO private_ground ( host_id, title, description, type, unit_amount, access_vehicle,
+        INSERT INTO private_ground ( host_id, status, title, description, type, unit_amount, access_vehicle,
                                     space_size, theme, created_at, created_by, deleted )
-         VALUES ( #{hostId}, #{title}, #{description}, #{type}, #{unitAmount}, #{accessVehicle},
+         VALUES ( #{hostId}, #{status}, #{title}, #{description}, #{type}, #{unitAmount}, #{accessVehicle},
              #{spaceSize}, #{theme}, now(), #{createdBy}, #{deleted} )
     </insert>
 
-    <select id="findById" parameterType="long" resultType="com.mustoutdoor.testserverapi.model.vo.PrivateGround">
+    <select id="findByHostId" parameterType="long" resultType="com.mustoutdoor.testserverapi.model.vo.PrivateGround">
         SELECT * FROM private_ground WHERE host_id = #{hostId} AND deleted = false
+    </select>
+
+    <select id="findById" parameterType="long" resultType="com.mustoutdoor.testserverapi.model.vo.PrivateGround">
+        SELECT * FROM private_ground WHERE pg_id = #{pgId} AND deleted = false AND status = 'ACTIVE'
     </select>
 
 </mapper>

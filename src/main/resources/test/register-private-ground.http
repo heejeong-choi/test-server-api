@@ -2,15 +2,15 @@ POST http://localhost:8112/api/v1/private-ground/register
 Content-Type: application/json
 
 {
-  "hostId": 1,
-  "title": "Windmill & River",
+  "hostId": 5,
+  "title": "Riverside",
   "description": "orem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim",
   "type": "PARK",
   "unitAmount": 4,
   "accessVehicle": "UP_TO_MID",
   "spaceSize": 280.0,
   "theme": [
-    "HILL_SIDE", "RIVER_VIEW", "BEACH_FRONT", "DESERT"
+    "HILL_SIDE", "RIVER_VIEW", "BEACH_FRONT"
   ]
 }
 

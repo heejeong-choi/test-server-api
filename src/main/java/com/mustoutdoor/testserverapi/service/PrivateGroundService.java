@@ -25,10 +25,14 @@ public class PrivateGroundService {
     private final PrivateGroundMapper privateGroundMapper;
     private final HostService hostService;
 
+    public PrivateGroundResDto findByPgId(long pgId) {
+        return toDto(privateGroundMapper.findById(pgId));
+    }
+
     public PrivateGroundResDto register(PrivateGroundReqDto.Registry form) {
         Host host = hostService.getById(form.getHostId());
 
-        PrivateGround existGround = privateGroundMapper.findById(host.getHostId());
+        PrivateGround existGround = privateGroundMapper.findByHostId(host.getHostId());
 
         if(existGround != null) {
             throw new ApiException("해당 호스트는 이미 private ground를 보유하고 있습니다.",
@@ -37,7 +41,7 @@ public class PrivateGroundService {
 
         //type은 1개만, theme은 3개까지만
         PrivateGround privateGround = new PrivateGround()
-                .setStatus(GroundStatus.UNDER_INSPECTION)
+                .setStatus(GroundStatus.ACTIVE)
                 .setTitle(form.getTitle())
                 .setHostId(host.getHostId())
                 .setDescription(form.getDescription())
