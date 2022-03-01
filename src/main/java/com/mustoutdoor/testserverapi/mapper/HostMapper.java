@@ -10,6 +10,8 @@ public interface HostMapper {
 
     Host findById(long hostId);
 
+    Host findByEmailAndDeletedFalse(String email);
+
 //    void deleteById(long hostId);
 //
 //    void update(Host host);

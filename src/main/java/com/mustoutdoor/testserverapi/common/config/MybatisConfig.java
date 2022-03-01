@@ -28,12 +28,12 @@ public class MybatisConfig {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource);
         factoryBean.setMapperLocations(applicationContext.getResources("classpath:mapper/*.xml"));
-        factoryBean.setTypeHandlers(
-                new BooleanTypeHandler(),
-                new PrivateGroundType.TypeHandler(),
-                new LocationTheme.TypeHandler(),
-                new GroundStatus.TypeHandler(),
-                new AccessVehicle.TypeHandler());
+        factoryBean.setTypeHandlers(new TypeHandler[] {
+                        new PrivateGroundType.TypeHandler(),
+                        new LocationTheme.TypeHandler(),
+                        new GroundStatus.TypeHandler(),
+                        new AccessVehicle.TypeHandler()
+                });
         SqlSessionFactory factory = factoryBean.getObject();
         factory.getConfiguration().setMapUnderscoreToCamelCase(true);
         return factoryBean.getObject();

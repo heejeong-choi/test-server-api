@@ -36,4 +36,11 @@ public class HostController {
         return ApiResponse.success(response);
     }
 
+    @PatchMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ApiResponse<HostResDto> register(@RequestBody HostReqDto.UpdateForm request) {
+        log.info("호스트 정보 수정 REQ :: {}", request.toString());
+
+        return ApiResponse.success(new HostResDto());
+    }
+
 }

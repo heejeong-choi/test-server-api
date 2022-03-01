@@ -1,5 +1,7 @@
 package com.mustoutdoor.testserverapi.service;
 
+import com.mustoutdoor.testserverapi.common.codes.ErrorCodes;
+import com.mustoutdoor.testserverapi.common.handler.ApiException;
 import com.mustoutdoor.testserverapi.mapper.HostMapper;
 import com.mustoutdoor.testserverapi.model.dto.HostReqDto;
 import com.mustoutdoor.testserverapi.model.dto.HostResDto;
@@ -22,8 +24,17 @@ public class HostService {
         return hostMapper.findById(hostId);
     }
 
+    public Host getByEmail(String email) {
+        return hostMapper.findByEmailAndDeletedFalse(email);
+    }
+
     //호스트 등록
     public HostResDto register(HostReqDto.Registry request) {
+
+        if(getByEmail(request.getEmail()) != null) {
+            throw new ApiException("이미 존재하는 호스트입니다. 다른 이메일을 사용해주세요.", ErrorCodes.CONFLICT_EXCEPTION);
+        }
+
         Host host = new Host()
                 .setName(request.getName())
                 .setEmail(request.getEmail())
@@ -33,7 +44,6 @@ public class HostService {
                 .setDeleted(false);
 
         hostMapper.save(host);
-
         return toDto(host);
     }
 

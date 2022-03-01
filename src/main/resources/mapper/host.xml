@@ -14,14 +14,16 @@
         SELECT * FROM host WHERE host_id = #{hostId}
     </select>
 
+    <select id="findByEmail" parameterType="String" resultType="com.mustoutdoor.testserverapi.model.vo.Host">
+        SELECT * FROM host WHERE email = #{email} AND deleted = false
+    </select>
+
     <delete id="deleteById" parameterType="long">
         DELETE FROM host WHERE host_id = #{hostId}
     </delete>
 
-<!--    <update id="update" parameterType="com.mustoutdoor.testserverapi.model.vo.Host">-->
-<!--        UPDATE host SET image_url = #{imageUrl}, modified_at = now(), modified_by = name WHERE host_id = #{hostId}-->
-<!--    </update>-->
-
-
+    <update id="update" parameterType="com.mustoutdoor.testserverapi.model.vo.Host">
+        UPDATE host SET name = #{name}, image_url = #{imageUrl}, modified_at = now(), modified_by = name WHERE host_id = #{hostId}
+    </update>
 
 </mapper>

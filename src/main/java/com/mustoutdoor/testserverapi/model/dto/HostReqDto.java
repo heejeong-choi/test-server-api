@@ -18,4 +18,13 @@ public class HostReqDto {
         String imageUrl;
 
     }
+
+    @Data
+    @Accessors(chain = true)
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class UpdateForm {
+        String name;
+        String imageUrl;
+    }
 }
