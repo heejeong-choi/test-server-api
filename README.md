@@ -24,4 +24,9 @@
 - private ground 삭제 또는 숨기기
 - private ground 수정하기
 
+### 어려웠던 부분
+- No enum constant 에러 핸들링
+
 ### 참고문헌
+- [Mybatis Mapper 설정](https://mybatis.org/mybatis-3/ko/configuration.html#typeHandlers)
+- 

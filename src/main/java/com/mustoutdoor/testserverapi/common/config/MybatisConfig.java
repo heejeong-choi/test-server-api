@@ -1,6 +1,12 @@
 package com.mustoutdoor.testserverapi.common.config;
 
+import com.mustoutdoor.testserverapi.common.codes.AccessVehicle;
+import com.mustoutdoor.testserverapi.common.codes.GroundStatus;
+import com.mustoutdoor.testserverapi.common.codes.LocationTheme;
+import com.mustoutdoor.testserverapi.common.codes.PrivateGroundType;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.type.BooleanTypeHandler;
+import org.apache.ibatis.type.TypeHandler;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
@@ -22,6 +28,12 @@ public class MybatisConfig {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource);
         factoryBean.setMapperLocations(applicationContext.getResources("classpath:mapper/*.xml"));
+        factoryBean.setTypeHandlers(
+                new BooleanTypeHandler(),
+                new PrivateGroundType.TypeHandler(),
+                new LocationTheme.TypeHandler(),
+                new GroundStatus.TypeHandler(),
+                new AccessVehicle.TypeHandler());
         SqlSessionFactory factory = factoryBean.getObject();
         factory.getConfiguration().setMapUnderscoreToCamelCase(true);
         return factoryBean.getObject();

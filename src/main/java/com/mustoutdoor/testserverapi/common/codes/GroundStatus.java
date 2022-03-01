@@ -1,10 +1,14 @@
 package com.mustoutdoor.testserverapi.common.codes;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.mustoutdoor.testserverapi.common.handler.CodeEnum;
+import com.mustoutdoor.testserverapi.common.handler.CodeEnumTypeHandler;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.apache.ibatis.type.MappedTypes;
 
 @AllArgsConstructor
-public enum GroundStatus {
+public enum GroundStatus implements CodeEnum {
 
     ACTIVE ("ACTIVE", "공개된 private ground", true),
     INACTIVE ("INACTIVE", "숨김처리 된 private ground", true),
@@ -19,5 +23,18 @@ public enum GroundStatus {
 
     @Getter
     private boolean active;
+
+    @MappedTypes(GroundStatus.class)
+    public static class TypeHandler extends CodeEnumTypeHandler<GroundStatus> {
+        public TypeHandler() {
+            super(GroundStatus.class);
+        }
+    }
+
+    @Override
+    @JsonValue
+    public String getCode() {
+        return code;
+    }
 
 }

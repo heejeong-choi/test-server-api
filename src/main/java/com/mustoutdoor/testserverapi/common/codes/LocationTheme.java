@@ -1,14 +1,18 @@
 package com.mustoutdoor.testserverapi.common.codes;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.mustoutdoor.testserverapi.common.handler.CodeEnum;
+import com.mustoutdoor.testserverapi.common.handler.CodeEnumTypeHandler;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.apache.ibatis.type.MappedTypes;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
-public enum LocationTheme {
+public enum LocationTheme implements CodeEnum {
 
     FOREST("FOREST", "숲", true),
     MOUNTAIN ("MOUNTAIN", "산", true),
@@ -42,4 +46,19 @@ public enum LocationTheme {
                 .filter(LocationTheme::isActive)
                 .collect(Collectors.toList());
     }
+
+
+    @MappedTypes(LocationTheme.class)
+    public static class TypeHandler extends CodeEnumTypeHandler<LocationTheme> {
+        public TypeHandler() {
+            super(LocationTheme.class);
+        }
+    }
+
+    @Override
+    @JsonValue
+    public String getCode() {
+        return code;
+    }
+
 }

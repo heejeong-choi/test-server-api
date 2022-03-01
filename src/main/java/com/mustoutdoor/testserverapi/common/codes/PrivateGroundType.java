@@ -1,10 +1,14 @@
 package com.mustoutdoor.testserverapi.common.codes;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.mustoutdoor.testserverapi.common.handler.CodeEnum;
+import com.mustoutdoor.testserverapi.common.handler.CodeEnumTypeHandler;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.apache.ibatis.type.MappedTypes;
 
 @AllArgsConstructor
-public enum PrivateGroundType {
+public enum PrivateGroundType implements CodeEnum {
 
     PARK ("PARK", "공원", true),
     FARMLAND ("FARMLAND", "넓은 농경지", true),
@@ -19,12 +23,25 @@ public enum PrivateGroundType {
     REST_STOP ("REST_STOP","휴게소", true);
 
     @Getter
-    private final String code;
+    private String code;
 
     @Getter
     private String desc;
 
     @Getter
     private boolean active;
+
+    @MappedTypes(PrivateGroundType.class)
+    public static class TypeHandler extends CodeEnumTypeHandler<PrivateGroundType> {
+        public TypeHandler() {
+            super(PrivateGroundType.class);
+        }
+    }
+
+    @Override
+    @JsonValue
+    public String getCode() {
+        return code;
+    }
 
 }
