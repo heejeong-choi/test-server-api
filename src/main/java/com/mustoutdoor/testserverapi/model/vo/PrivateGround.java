@@ -2,7 +2,6 @@ package com.mustoutdoor.testserverapi.model.vo;
 
 import com.mustoutdoor.testserverapi.common.codes.AccessVehicle;
 import com.mustoutdoor.testserverapi.common.codes.GroundStatus;
-import com.mustoutdoor.testserverapi.common.codes.LocationTheme;
 import com.mustoutdoor.testserverapi.common.codes.PrivateGroundType;
 import lombok.Data;
 import lombok.experimental.Accessors;

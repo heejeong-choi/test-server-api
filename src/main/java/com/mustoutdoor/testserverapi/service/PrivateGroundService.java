@@ -13,6 +13,7 @@ import com.mustoutdoor.testserverapi.model.vo.PrivateGround;
 import com.mustoutdoor.testserverapi.mapper.PrivateGroundMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -75,7 +76,11 @@ public class PrivateGroundService {
             Arrays.stream(privateGround.getTheme().split(",")).forEach(it -> locationThemeList.add(LocationTheme.valueOf(it)));
         }
 
-        return new PrivateGroundResDto()
+        String locationTheme = locationThemeList.toString().replaceAll("\\[|\\]", "").replaceAll(", ",", ");
+
+        System.out.println(locationTheme);
+
+        return privateGroundDto
                 .setPgId(privateGround.getPgId())
                 .setStatus(privateGround.getStatus())
                 .setTitle(privateGround.getTitle())
@@ -84,7 +89,7 @@ public class PrivateGroundService {
                 .setUnitAmount(privateGround.getUnitAmount())
                 .setAccessVehicle(privateGround.getAccessVehicle())
                 .setSpaceSize(privateGround.getSpaceSize())
-                .setTheme(locationThemeList)
+                .setTheme(locationTheme)
                 .setCreatedAt(privateGround.getCreatedAt())
                 .setCreatedBy(privateGround.getCreatedBy())
                 .setModifiedAt(privateGround.getModifiedAt())

@@ -27,11 +27,19 @@ public class PrivateGroundResDto {
     private int unitAmount;
     private AccessVehicle accessVehicle;
     private float spaceSize;
-    private List<LocationTheme> theme;
+    private String theme;
     private LocalDateTime createdAt;
     private String createdBy;
     private LocalDateTime modifiedAt;
     private String modifiedBy;
     private boolean deleted;
+
+    @Data
+    @Accessors(chain = true)
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class CustomResDto {
+
+    }
 
 }

@@ -20,4 +20,10 @@
         SELECT * FROM private_ground WHERE pg_id = #{pgId} AND deleted = false AND status = 'ACTIVE'
     </select>
 
+    <select id="findAll" parameterType="com.mustoutdoor.testserverapi.model.vo.PrivateGround" resultType="com.mustoutdoor.testserverapi.model.vo.PrivateGround">
+        SELECT pg_id, host_id, title, type, unit_amount, access_vehicle,
+               space_size, created_at, created_by FROM private_ground
+        ORDER BY pg_id DESC
+    </select>
+
 </mapper>

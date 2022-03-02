@@ -7,10 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.apache.ibatis.type.MappedTypes;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @AllArgsConstructor
 public enum LocationTheme implements CodeEnum {
 
@@ -40,13 +36,6 @@ public enum LocationTheme implements CodeEnum {
 
     @Getter
     private boolean active;
-
-    public static List<LocationTheme> locationThemeList() {
-        return Arrays.stream(LocationTheme.values())
-                .filter(LocationTheme::isActive)
-                .collect(Collectors.toList());
-    }
-
 
     @MappedTypes(LocationTheme.class)
     public static class TypeHandler extends CodeEnumTypeHandler<LocationTheme> {

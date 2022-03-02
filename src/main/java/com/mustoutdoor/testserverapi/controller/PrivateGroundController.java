@@ -38,4 +38,13 @@ public class PrivateGroundController {
 
         return ApiResponse.success(response);
     }
+
+    //private ground 전체 조회
+    @GetMapping(value = "/fetch", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ApiResponse<>
+
+    //private ground 수정하기
+
+    //private ground 숨김처리하기
+
 }

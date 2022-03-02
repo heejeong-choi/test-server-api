@@ -43,4 +43,6 @@ public class HostController {
         return ApiResponse.success(new HostResDto());
     }
 
+    //호스트 탈퇴하기 기능
+
 }

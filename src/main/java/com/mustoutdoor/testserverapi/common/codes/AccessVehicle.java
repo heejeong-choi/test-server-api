@@ -11,10 +11,10 @@ import org.apache.ibatis.type.MappedTypes;
 @AllArgsConstructor
 public enum AccessVehicle implements CodeEnum {
 
-    UP_TO_COMPACT("UP_TO_COMPACT", "light size", true),
-    UP_TO_MID ("UP_TO_MID", "large size", true),
-    UP_TO_COMPACT_FOR_RV ("UP_TO_COMPACT_FOR_RV", "RV or Trailer (3 pax)", true),
-    UP_TO_MID_FOR_RV ("UP_TO_MID_FOR_RV", "large RV or Trailer (5 pax)", true);
+    UP_TO_COMPACT_FOR_LIGHT_SIZE("UP_TO_COMPACT_LIGHT_SIZE", "light size", true),
+    UP_TO_MID_LARGE_SIZE ("UP_TO_MID_LARGE_SIZE", "large size", true),
+    UP_TO_COMPACT_FOR_RV_OR_TRAILER ("UP_TO_COMPACT_FOR_RV_OR_TRAILER", "RV or Trailer (3 pax)", true),
+    UP_TO_MID_FOR_RV_OR_TRAILER ("UP_TO_COMPACT_FOR_RV_OR_TRAILER", "large RV or Trailer (5 pax)", true);
 
     @Getter
     private final String code;
