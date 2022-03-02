@@ -2,6 +2,9 @@ package com.mustoutdoor.testserverapi.mapper;
 
 import com.mustoutdoor.testserverapi.model.vo.PrivateGround;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
+
 @Mapper
 public interface PrivateGroundMapper {
 
@@ -10,4 +13,6 @@ public interface PrivateGroundMapper {
     PrivateGround findByHostId(long hostId);
 
     PrivateGround findById(long pgId);
+
+    List<PrivateGround> findAll();
 }

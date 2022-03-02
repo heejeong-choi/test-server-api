@@ -28,6 +28,14 @@ public class HostService {
         return hostMapper.findByEmailAndDeletedFalse(email);
     }
 
+    public void deleteHost(long hostId) {
+        if(getById(hostId) != null) {
+            hostMapper.deleteById(hostId);
+        } else {
+            throw new ApiException("이미 탈퇴한 호스트입니다.", ErrorCodes.CONFLICT_EXCEPTION);
+        }
+    }
+
     //호스트 등록
     public HostResDto register(HostReqDto.Registry request) {
 

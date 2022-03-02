@@ -9,11 +9,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/private-ground")
 @RequiredArgsConstructor
-public class PrivateGroundController {
+public class PrivateGroundController extends BaseController {
 
     private final PrivateGroundService privateGroundService;
 
@@ -41,7 +43,11 @@ public class PrivateGroundController {
 
     //private ground 전체 조회
     @GetMapping(value = "/fetch", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ApiResponse<>
+    public ApiResponse<List<PrivateGroundResDto>> fetch() {
+        List<PrivateGroundResDto> response = privateGroundService.findAll();
+
+        return ApiResponse.success(response);
+    }
 
     //private ground 수정하기
 

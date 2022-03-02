@@ -12,8 +12,8 @@ public interface HostMapper {
 
     Host findByEmailAndDeletedFalse(String email);
 
-//    void deleteById(long hostId);
-//
-//    void update(Host host);
+    void deleteById(long hostId);
+
+    Host update(Host host);
 
 }

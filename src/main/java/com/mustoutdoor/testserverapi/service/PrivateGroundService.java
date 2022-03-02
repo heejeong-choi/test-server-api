@@ -3,7 +3,6 @@ package com.mustoutdoor.testserverapi.service;
 import com.mustoutdoor.testserverapi.common.codes.ErrorCodes;
 import com.mustoutdoor.testserverapi.common.codes.GroundStatus;
 import com.mustoutdoor.testserverapi.common.codes.LocationTheme;
-import com.mustoutdoor.testserverapi.common.codes.PrivateGroundType;
 import com.mustoutdoor.testserverapi.common.handler.ApiException;
 import com.mustoutdoor.testserverapi.common.utils.StringUtil;
 import com.mustoutdoor.testserverapi.model.dto.PrivateGroundReqDto;
@@ -13,7 +12,6 @@ import com.mustoutdoor.testserverapi.model.vo.PrivateGround;
 import com.mustoutdoor.testserverapi.mapper.PrivateGroundMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -32,6 +30,13 @@ public class PrivateGroundService {
 
     public PrivateGroundResDto findByPgId(long pgId) {
         return toDto(privateGroundMapper.findById(pgId));
+    }
+
+    public List<PrivateGroundResDto> findAll() throws IllegalArgumentException {
+        return privateGroundMapper.findAll()
+                .stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 
     public PrivateGroundResDto register(PrivateGroundReqDto.Registry form) {

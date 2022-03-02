@@ -19,11 +19,6 @@ public class HostController {
 
     private final HostService hostService;
 
-    @GetMapping(value = "/hello", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String HealthCheck() {
-        return "I'm ok, Good ! ! !";
-    }
-
     //호스트 등록하기 API
     @PostMapping(value = "/register", produces = MediaType.APPLICATION_JSON_VALUE)
     public ApiResponse<HostResDto> register(@RequestBody HostReqDto.Registry request) {
@@ -44,5 +39,15 @@ public class HostController {
     }
 
     //호스트 탈퇴하기 기능
+    @DeleteMapping(value = "/delete/{host_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ApiResponse delete(@PathVariable (name = "host_id") long hostId) {
+        log.info("탈퇴를 원하는 호스트 ID값 REQ :: {}", hostId);
+
+        hostService.deleteHost(hostId);
+
+        log.info("탈퇴 RES :: OK");
+
+        return ApiResponse.success("OK");
+    }
 
 }

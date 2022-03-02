@@ -34,12 +34,4 @@ public class PrivateGroundResDto {
     private String modifiedBy;
     private boolean deleted;
 
-    @Data
-    @Accessors(chain = true)
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class CustomResDto {
-
-    }
-
 }
