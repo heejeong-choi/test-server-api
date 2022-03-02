@@ -31,10 +31,6 @@ public class HostService {
     //호스트 등록
     public HostResDto register(HostReqDto.Registry request) {
 
-        if(getByEmail(request.getEmail()) != null) {
-            throw new ApiException("이미 존재하는 호스트입니다. 다른 이메일을 사용해주세요.", ErrorCodes.CONFLICT_EXCEPTION);
-        }
-
         Host host = new Host()
                 .setName(request.getName())
                 .setEmail(request.getEmail())
@@ -42,6 +38,10 @@ public class HostService {
                 .setCreatedAt(LocalDateTime.now())
                 .setCreatedBy(request.getName())
                 .setDeleted(false);
+
+        if(getByEmail(request.getEmail()) != null) {
+            throw new ApiException("이미 존재하는 호스트입니다. 다른 이메일을 사용해주세요.", ErrorCodes.CONFLICT_EXCEPTION);
+        }
 
         hostMapper.save(host);
         return toDto(host);

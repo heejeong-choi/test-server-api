@@ -8,8 +8,8 @@
     <insert id="save" parameterType="com.mustoutdoor.testserverapi.model.vo.PrivateGround">
         INSERT INTO private_ground ( host_id, status, title, description, type, unit_amount, access_vehicle,
                                     space_size, theme, created_at, created_by, deleted )
-         VALUES ( #{hostId}, #{status.code}, #{title}, #{description}, #{type.code}, #{unitAmount}, #{accessVehicle.code},
-             #{spaceSize.code}, #{theme}, now(), #{createdBy}, #{deleted} )
+         VALUES ( #{hostId}, #{status}, #{title}, #{description}, #{type}, #{unitAmount}, #{accessVehicle},
+             #{spaceSize}, #{theme}, now(), #{createdBy}, #{deleted} )
     </insert>
 
     <select id="findByHostId" parameterType="long" resultType="com.mustoutdoor.testserverapi.model.vo.PrivateGround">

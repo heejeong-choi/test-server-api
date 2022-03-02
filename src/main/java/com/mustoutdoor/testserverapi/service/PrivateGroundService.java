@@ -5,6 +5,7 @@ import com.mustoutdoor.testserverapi.common.codes.GroundStatus;
 import com.mustoutdoor.testserverapi.common.codes.LocationTheme;
 import com.mustoutdoor.testserverapi.common.codes.PrivateGroundType;
 import com.mustoutdoor.testserverapi.common.handler.ApiException;
+import com.mustoutdoor.testserverapi.common.utils.StringUtil;
 import com.mustoutdoor.testserverapi.model.dto.PrivateGroundReqDto;
 import com.mustoutdoor.testserverapi.model.dto.PrivateGroundResDto;
 import com.mustoutdoor.testserverapi.model.vo.Host;
@@ -15,6 +16,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -45,11 +49,11 @@ public class PrivateGroundService {
                 .setTitle(form.getTitle())
                 .setHostId(host.getHostId())
                 .setDescription(form.getDescription())
-                .setType(String.valueOf(form.getType()))
+                .setType(form.getType())
                 .setUnitAmount(form.getUnitAmount())
                 .setAccessVehicle(form.getAccessVehicle())
                 .setSpaceSize(form.getSpaceSize())
-                .setTheme(form.getTheme().stream().map(LocationTheme::getCode).collect(Collectors.joining(",")))
+                .setTheme(form.getTheme().stream().map(LocationTheme::getCode).collect(Collectors.joining(", ")))
                 .setCreatedAt(LocalDateTime.now())
                 .setCreatedBy(host.getName())
                 .setDeleted(false);
@@ -63,15 +67,24 @@ public class PrivateGroundService {
     }
 
     public PrivateGroundResDto toDto(PrivateGround privateGround) {
+
+        PrivateGroundResDto privateGroundDto = new PrivateGroundResDto();
+
+        List<LocationTheme> locationThemeList = new ArrayList<>();
+        if (StringUtil.isNotEmpty(privateGround.getTheme())) {
+            Arrays.stream(privateGround.getTheme().split(",")).forEach(it -> locationThemeList.add(LocationTheme.valueOf(it)));
+        }
+
         return new PrivateGroundResDto()
                 .setPgId(privateGround.getPgId())
+                .setStatus(privateGround.getStatus())
                 .setTitle(privateGround.getTitle())
                 .setDescription(privateGround.getDescription())
-                .setType(PrivateGroundType.valueOf(privateGround.getType()))
+                .setType(privateGround.getType())
                 .setUnitAmount(privateGround.getUnitAmount())
                 .setAccessVehicle(privateGround.getAccessVehicle())
                 .setSpaceSize(privateGround.getSpaceSize())
-                .setTheme(LocationTheme.valueOf(privateGround.getTheme()))
+                .setTheme(locationThemeList)
                 .setCreatedAt(privateGround.getCreatedAt())
                 .setCreatedBy(privateGround.getCreatedBy())
                 .setModifiedAt(privateGround.getModifiedAt())

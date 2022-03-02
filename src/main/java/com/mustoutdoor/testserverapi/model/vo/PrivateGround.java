@@ -2,6 +2,8 @@ package com.mustoutdoor.testserverapi.model.vo;
 
 import com.mustoutdoor.testserverapi.common.codes.AccessVehicle;
 import com.mustoutdoor.testserverapi.common.codes.GroundStatus;
+import com.mustoutdoor.testserverapi.common.codes.LocationTheme;
+import com.mustoutdoor.testserverapi.common.codes.PrivateGroundType;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -16,7 +18,7 @@ public class PrivateGround {
     private GroundStatus status;
     private String title;
     private String description;
-    private String type;
+    private PrivateGroundType type;
     private int unitAmount;
     private AccessVehicle accessVehicle;
     private float spaceSize;

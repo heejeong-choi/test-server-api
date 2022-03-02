@@ -1,4 +1,0 @@
-GET http://localhost:8112/api/v1/private-ground/search/7
-Accept: application/json
-
-###

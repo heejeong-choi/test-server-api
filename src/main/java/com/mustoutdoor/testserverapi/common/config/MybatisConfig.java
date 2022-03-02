@@ -29,6 +29,7 @@ public class MybatisConfig {
         factoryBean.setDataSource(dataSource);
         factoryBean.setMapperLocations(applicationContext.getResources("classpath:mapper/*.xml"));
         factoryBean.setTypeHandlers(new TypeHandler[] {
+                        new BooleanTypeHandler(),
                         new PrivateGroundType.TypeHandler(),
                         new LocationTheme.TypeHandler(),
                         new GroundStatus.TypeHandler(),

@@ -14,7 +14,7 @@
         SELECT * FROM host WHERE host_id = #{hostId}
     </select>
 
-    <select id="findByEmail" parameterType="String" resultType="com.mustoutdoor.testserverapi.model.vo.Host">
+    <select id="findByEmailAndDeletedFalse" parameterType="String" resultType="com.mustoutdoor.testserverapi.model.vo.Host">
         SELECT * FROM host WHERE email = #{email} AND deleted = false
     </select>
 

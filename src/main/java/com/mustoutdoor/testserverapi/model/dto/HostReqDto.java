@@ -24,7 +24,9 @@ public class HostReqDto {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class UpdateForm {
+
         String name;
         String imageUrl;
+
     }
 }
