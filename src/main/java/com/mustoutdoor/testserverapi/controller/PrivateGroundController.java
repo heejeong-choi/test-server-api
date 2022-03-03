@@ -22,14 +22,6 @@ public class PrivateGroundController extends BaseController {
     private final PrivateGroundService privateGroundService;
     private final PrivateGroundMapper privateGroundMapper;
 
-    @GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ApiResponse<List<PrivateGround>> list() {
-
-        List<PrivateGround> response = privateGroundMapper.findAll();
-
-        return ApiResponse.success(response);
-    }
-
     @PostMapping(value = "/register", produces = MediaType.APPLICATION_JSON_VALUE)
     public ApiResponse<PrivateGroundResDto> register(@RequestBody PrivateGroundReqDto.Registry request) {
         log.info("Private ground 등록 REQ :: {}", request.toString());

@@ -35,7 +35,7 @@ public class PrivateGroundService {
     public List<PrivateGroundResDto> findAll() throws IllegalArgumentException {
         return privateGroundMapper.findAll()
                 .stream()
-                .map(this::toDto)
+                .map(this::forSearch)
                 .collect(Collectors.toList());
     }
 
@@ -59,7 +59,7 @@ public class PrivateGroundService {
                 .setUnitAmount(form.getUnitAmount())
                 .setAccessVehicle(form.getAccessVehicle())
                 .setSpaceSize(form.getSpaceSize())
-                .setTheme(form.getTheme().stream().map(LocationTheme::getCode).collect(Collectors.joining(", ")))
+                .setTheme(form.getTheme().stream().map(LocationTheme::getCode).collect(Collectors.joining(",")))
                 .setCreatedAt(LocalDateTime.now())
                 .setCreatedBy(host.getName())
                 .setDeleted(false);
@@ -95,6 +95,26 @@ public class PrivateGroundService {
                 .setAccessVehicle(privateGround.getAccessVehicle())
                 .setSpaceSize(privateGround.getSpaceSize())
                 .setTheme(locationTheme)
+                .setCreatedAt(privateGround.getCreatedAt())
+                .setCreatedBy(privateGround.getCreatedBy())
+                .setModifiedAt(privateGround.getModifiedAt())
+                .setModifiedBy(privateGround.getModifiedBy())
+                .setDeleted(privateGround.isDeleted());
+    }
+
+    public PrivateGroundResDto forSearch(PrivateGround privateGround) {
+
+        PrivateGroundResDto privateGroundDto = new PrivateGroundResDto();
+        return privateGroundDto
+                .setPgId(privateGround.getPgId())
+                .setStatus(privateGround.getStatus())
+                .setTitle(privateGround.getTitle())
+                .setDescription(privateGround.getDescription())
+                .setType(privateGround.getType())
+                .setUnitAmount(privateGround.getUnitAmount())
+                .setAccessVehicle(privateGround.getAccessVehicle())
+                .setSpaceSize(privateGround.getSpaceSize())
+                .setTheme(privateGround.getTheme())
                 .setCreatedAt(privateGround.getCreatedAt())
                 .setCreatedBy(privateGround.getCreatedBy())
                 .setModifiedAt(privateGround.getModifiedAt())

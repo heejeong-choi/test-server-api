@@ -34,4 +34,20 @@ public class PrivateGroundResDto {
     private String modifiedBy;
     private boolean deleted;
 
+    @Data
+    @Accessors(chain = true)
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ForSearch {
+        private long pgId;
+        private long hostId;
+        private String title;
+        private PrivateGroundType type;
+        private int unitAmount;
+        private AccessVehicle accessVehicle;
+        private float spaceSize;
+        private String theme;
+        private LocalDateTime createdAt;
+    }
+
 }
