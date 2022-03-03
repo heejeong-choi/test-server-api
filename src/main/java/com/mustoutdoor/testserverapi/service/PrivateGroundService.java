@@ -28,11 +28,11 @@ public class PrivateGroundService {
     private final PrivateGroundMapper privateGroundMapper;
     private final HostService hostService;
 
-    public PrivateGroundResDto findByPgId(long pgId) {
-        return toDto(privateGroundMapper.findById(pgId));
+    public PrivateGroundResDto.ForSearch findByPgId(long pgId) {
+        return forSearch(privateGroundMapper.findById(pgId));
     }
 
-    public List<PrivateGroundResDto> findAll() throws IllegalArgumentException {
+    public List<PrivateGroundResDto.ForSearch> findAll() throws IllegalArgumentException {
         return privateGroundMapper.findAll()
                 .stream()
                 .map(this::forSearch)
@@ -102,23 +102,19 @@ public class PrivateGroundService {
                 .setDeleted(privateGround.isDeleted());
     }
 
-    public PrivateGroundResDto forSearch(PrivateGround privateGround) {
+    public PrivateGroundResDto.ForSearch forSearch(PrivateGround privateGround) {
 
-        PrivateGroundResDto privateGroundDto = new PrivateGroundResDto();
+        PrivateGroundResDto.ForSearch privateGroundDto = new PrivateGroundResDto.ForSearch();
         return privateGroundDto
                 .setPgId(privateGround.getPgId())
-                .setStatus(privateGround.getStatus())
+                .setHostName(privateGround.getCreatedBy())
                 .setTitle(privateGround.getTitle())
-                .setDescription(privateGround.getDescription())
                 .setType(privateGround.getType())
                 .setUnitAmount(privateGround.getUnitAmount())
                 .setAccessVehicle(privateGround.getAccessVehicle())
                 .setSpaceSize(privateGround.getSpaceSize())
                 .setTheme(privateGround.getTheme())
                 .setCreatedAt(privateGround.getCreatedAt())
-                .setCreatedBy(privateGround.getCreatedBy())
-                .setModifiedAt(privateGround.getModifiedAt())
-                .setModifiedBy(privateGround.getModifiedBy())
                 .setDeleted(privateGround.isDeleted());
     }
 }

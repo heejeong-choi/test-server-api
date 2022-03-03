@@ -40,7 +40,6 @@ public class PrivateGroundResDto {
     @AllArgsConstructor
     public static class ForSearch {
         private long pgId;
-        private long hostId;
         private String title;
         private PrivateGroundType type;
         private int unitAmount;
@@ -48,6 +47,8 @@ public class PrivateGroundResDto {
         private float spaceSize;
         private String theme;
         private LocalDateTime createdAt;
+        private String hostName;
+        private boolean deleted;
     }
 
 }

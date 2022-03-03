@@ -34,10 +34,10 @@ public class PrivateGroundController extends BaseController {
     }
 
     @GetMapping(value = "/search/{pg_id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ApiResponse<PrivateGroundResDto> search(@PathVariable("pg_id") long pgId) {
+    public ApiResponse<PrivateGroundResDto.ForSearch> search(@PathVariable("pg_id") long pgId) {
         log.info("Private ground 조회 REQ - private ground ID :: {}", pgId);
 
-        PrivateGroundResDto response = privateGroundService.findByPgId(pgId);
+        PrivateGroundResDto.ForSearch response = privateGroundService.findByPgId(pgId);
 
         log.info("Private ground 조회 RES :: {}", response.toString());
 
@@ -45,10 +45,9 @@ public class PrivateGroundController extends BaseController {
     }
 
 //    private-ground 전체 조회
-//    dto mapping시 enum값 에러 발생
     @GetMapping(value = "/fetch", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ApiResponse<List<PrivateGroundResDto>> fetch() {
-        List<PrivateGroundResDto> response = privateGroundService.findAll();
+    public ApiResponse<List<PrivateGroundResDto.ForSearch>> fetch() {
+        List<PrivateGroundResDto.ForSearch> response = privateGroundService.findAll();
 
         return ApiResponse.success(response);
     }
