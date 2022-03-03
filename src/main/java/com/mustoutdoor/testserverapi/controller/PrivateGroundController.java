@@ -4,7 +4,6 @@ import com.mustoutdoor.testserverapi.common.handler.ApiResponse;
 import com.mustoutdoor.testserverapi.mapper.PrivateGroundMapper;
 import com.mustoutdoor.testserverapi.model.dto.PrivateGroundReqDto;
 import com.mustoutdoor.testserverapi.model.dto.PrivateGroundResDto;
-import com.mustoutdoor.testserverapi.model.vo.PrivateGround;
 import com.mustoutdoor.testserverapi.service.PrivateGroundService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/private-ground")
 @RequiredArgsConstructor
-public class PrivateGroundController extends BaseController {
+public class PrivateGroundController {
 
     private final PrivateGroundService privateGroundService;
     private final PrivateGroundMapper privateGroundMapper;
@@ -52,8 +51,16 @@ public class PrivateGroundController extends BaseController {
         return ApiResponse.success(response);
     }
 
-    //private ground 수정하기
-
     //private ground 숨김처리하기
+    @PatchMapping(value = "/hidden/{pg_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ApiResponse<PrivateGroundResDto> hidePrivateGround(@PathVariable("pg_id") long id) {
+        log.info("숨김 처리 할 pg id :: {}", id);
+
+        PrivateGroundResDto response = privateGroundService.hidePrivateGround(id);
+
+        log.info("숨김 처리한 결과 :: {}", response.toString());
+
+        return ApiResponse.success(response);
+    }
 
 }

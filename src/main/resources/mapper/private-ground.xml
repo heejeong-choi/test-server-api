@@ -25,4 +25,9 @@
         ORDER BY pg_id DESC
     </select>
 
+    <update id="hidePrivateGround" parameterType="com.mustoutdoor.testserverapi.model.vo.PrivateGround">
+        UPDATE private_ground SET status = #{status}, modified_at = #{modifiedAt}, modified_by = #{modifiedBy} WHERE pg_id = #{pgId}
+    </update>
+
+
 </mapper>

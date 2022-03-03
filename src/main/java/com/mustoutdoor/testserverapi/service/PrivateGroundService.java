@@ -32,6 +32,10 @@ public class PrivateGroundService {
         return forSearch(privateGroundMapper.findById(pgId));
     }
 
+    public PrivateGroundResDto findById(long pgId) {
+        return toDto(privateGroundMapper.findById(pgId));
+    }
+
     public List<PrivateGroundResDto.ForSearch> findAll() throws IllegalArgumentException {
         return privateGroundMapper.findAll()
                 .stream()
@@ -70,6 +74,20 @@ public class PrivateGroundService {
 
         privateGroundMapper.save(privateGround);
         return toDto(privateGround);
+    }
+
+    public PrivateGroundResDto hidePrivateGround(long pgId) {
+        PrivateGround privateGround = privateGroundMapper.findById(pgId);
+        Host host = hostService.getById(privateGround.getHostId());
+
+        if(privateGround.getStatus() == GroundStatus.ACTIVE) {
+            privateGround.setStatus(GroundStatus.INACTIVE)
+                    .setModifiedAt(LocalDateTime.now())
+                    .setModifiedBy(host.getName());
+            privateGroundMapper.hidePrivateGround(pgId);
+            return toDto(privateGround);
+        } else
+            throw new ApiException("숨김처리가 불가능한 Private ground입니다.", ErrorCodes.VALIDATION_EXCEPTION);
     }
 
     public PrivateGroundResDto toDto(PrivateGround privateGround) {

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/host")
 @Component
 @RequiredArgsConstructor
-public class HostController extends BaseController {
+public class HostController {
 
     private final HostService hostService;
 

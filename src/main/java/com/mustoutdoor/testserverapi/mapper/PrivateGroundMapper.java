@@ -15,4 +15,7 @@ public interface PrivateGroundMapper {
     PrivateGround findById(long pgId);
 
     List<PrivateGround> findAll();
+
+    PrivateGround hidePrivateGround(long pgId);
+
 }
