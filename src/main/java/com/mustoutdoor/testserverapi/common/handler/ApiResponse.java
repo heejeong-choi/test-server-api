@@ -1,6 +1,7 @@
 package com.mustoutdoor.testserverapi.common.handler;
 
 import com.mustoutdoor.testserverapi.common.codes.ErrorCodes;
+import com.mustoutdoor.testserverapi.common.codes.HttpStatusCodes;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +17,7 @@ public class ApiResponse<T> {
     public T data;
 
     public static <T> ApiResponse<T> success(T data) {
-        return new ApiResponse<>("", "", data);
+        return new ApiResponse<>("200", "요청 처리 완료", data);
     }
 
     public static <T> ApiResponse<T> error(ErrorCodes errorCode) {

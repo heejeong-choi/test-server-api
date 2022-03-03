@@ -1,8 +1,12 @@
+GET http://localhost:8112/api/v1/private-ground/search
+Accept: application/json
+
+###
 GET http://localhost:8112/hello
 Accept: application/json
 
 ### Health Cheak API
-DELETE http://localhost:8112/api/v1/host/delete/3
+DELETE http://localhost:8112/api/v1/host/delete/5
 Accept: application/json
 
 ### 호스트 탈퇴 API
@@ -10,11 +14,11 @@ GET http://localhost:8112/api/v1/private-ground/fetch
 Accept: application/json
 
 ### private ground 전체 조회하기
-GET http://localhost:8112/api/v1/private-ground/search/5
+GET http://localhost:8112/api/v1/private-ground/search/20
 Accept: application/json
 
 ### private ground 특정값 조회하기
-POST http://localhost:8112/api/v1/host/register
+  POST http://localhost:8112/api/v1/host/register
 Content-Type: application/json
 
 {
