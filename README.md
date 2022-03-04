@@ -19,4 +19,3 @@
 
 ### 참고문헌
 - [Mybatis Mapper 설정](https://mybatis.org/mybatis-3/ko/configuration.html#typeHandlers)
-- [MavenRepository](https://mvnrepository.com/)
